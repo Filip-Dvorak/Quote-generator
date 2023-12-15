@@ -1,3 +1,6 @@
+.main{
+    display: flex;
+}
 .card{
     width: 650px;
     height: 410px;
