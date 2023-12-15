@@ -1,0 +1,22 @@
+.card{
+    width: 650px;
+    height: 410px;
+    background-size:contain;
+    background-repeat: no-repeat;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-shadow: black 4px 0 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+#citat{
+    margin: 0px;
+}
+#author{
+    padding-bottom: 40px;
+}
