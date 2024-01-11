@@ -40,3 +40,15 @@ function generate() {
         }
     });
 }
+
+function changeColor(){
+    var textColor = document.getElementById("colorPicker").value;
+    document.getElementById("citat").style.color = textColor;
+    document.getElementById("author").style.color = textColor;
+}
+
+function changeSize(){
+    var textSize = document.getElementById("sizePicker").value;
+    document.getElementById("citat").style.fontSize = textSize + "px";
+    document.getElementById("author").style.fontSize = textSize + "px";
+}

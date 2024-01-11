@@ -8,8 +8,6 @@
     <script src="index.js"></script>
 </head>
 <body>
-<div class="main">
-<div class="controls">
     <label for="promptDropdown">Vyberte téma:</label>
     <select id="promptDropdown">
         <option value="age">age</option>
@@ -80,13 +78,19 @@
         <option value="success">success</option>
     </select>
 
+    <label for="colorPicker">Barva textu</label>
+    <input type="color" id="colorPicker" value="#e3d662" oninput="changeColor()">
+
+    <label for="sizePicker">Velikost textu</label>
+    <input type="range" id="sizePicker" min="10" max="40" value="30" oninput="changeSize()">
+
     <button onclick="generate()">Generuj</button>
-</div>
+
 
 <div id="card" class="card">
     <p id="citat"></p>
     <p id="author"></p>
 </div>
-</div>
+
 </body>
 </html>
