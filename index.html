@@ -84,6 +84,8 @@
     <label for="sizePicker">Velikost textu</label>
     <input type="range" id="sizePicker" min="10" max="40" value="30" oninput="changeSize()">
 
+    <div id="font-picker"></div>
+
     <button onclick="generate()">Generuj</button>
 
 
@@ -92,5 +94,9 @@
     <p id="author"></p>
 </div>
 
+<script src="FontPicker.js"></script>
+<script>
+    const fontPicker = new FontPicker();
+</script>
 </body>
 </html>
