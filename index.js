@@ -53,16 +53,18 @@ function changeSize(){
     document.getElementById("author").style.fontSize = textSize + "px";
 }
 
-async function share(){
+async function share() {
     var div = document.getElementById("card");
-    var image;
-    var title="quote"
+    var title = "quote";
 
-    html2canvas(div,{scrollX: 0, scrollY: 0,allowTaint: true, useCORS: true}).then(function(canvas) {
-        image = encodeURIComponent(canvas.toDataURL("image/png"));
+    try {
+        var canvas = await html2canvas(div, { scrollX: 0, scrollY: 0, allowTaint: true, useCORS: true });
+        var image = encodeURIComponent(canvas.toDataURL("image/png"));
         console.log(image);
-    })
 
-    var shareUrl='https://www.facebook.com/sharer/sharer.php?picture=' + encodeURIComponent(image) + '&quote=' + encodeURIComponent(title);
-    window.open(shareUrl,'_blank');
+        var shareUrl = 'https://www.facebook.com/sharer/sharer.php?picture=' + image + '&quote=' + encodeURIComponent(title);
+        window.open(shareUrl, '_blank');
+    } catch (error) {
+        console.error("Error capturing image:", error);
+    }
 }
