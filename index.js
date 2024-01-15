@@ -67,4 +67,5 @@ async function share() {
     } catch (error) {
         console.error("Error capturing image:", error);
     }
+
 }
