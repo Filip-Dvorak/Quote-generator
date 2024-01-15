@@ -52,3 +52,19 @@ function changeSize(){
     document.getElementById("citat").style.fontSize = textSize + "px";
     document.getElementById("author").style.fontSize = textSize + "px";
 }
+
+async function share() {
+    var div = document.getElementById("card");
+    var title = "quote";
+
+    try {
+        var canvas = await html2canvas(div, { scrollX: 0, scrollY: 0, allowTaint: true, useCORS: true });
+        var image = encodeURIComponent(canvas.toDataURL("image/png"));
+        console.log(image);
+
+        var shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(image) + '&quote=' + encodeURIComponent(title);
+        window.open(shareUrl, '_blank');
+    } catch (error) {
+        console.error("Error capturing image:", error);
+    }
+}

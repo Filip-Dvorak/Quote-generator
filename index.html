@@ -5,6 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="html2canvas.js"></script>
     <script src="index.js"></script>
 </head>
 <body>
@@ -85,6 +86,8 @@
     <input type="range" id="sizePicker" min="10" max="40" value="30" oninput="changeSize()">
 
     <button onclick="generate()">Generuj</button>
+    <button onclick="share()">Link na div</button>
+
 
 
 <div id="card" class="card">
