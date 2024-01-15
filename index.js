@@ -63,6 +63,6 @@ async function share(){
         console.log(image);
     })
 
-    var shareUrl='https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(image) + '&quote=' + encodeURIComponent(title);
+    var shareUrl='https://www.facebook.com/sharer/sharer.php?picture=' + encodeURIComponent(image) + '&quote=' + encodeURIComponent(title);
     window.open(shareUrl,'_blank');
 }
