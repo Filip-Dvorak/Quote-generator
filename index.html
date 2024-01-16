@@ -6,9 +6,19 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="html2canvas.js"></script>
-    <script src="index.js"></script>
 </head>
 <body>
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId            : '398009112687105',
+            xfbml            : true,
+            version          : 'v18.0'
+        });
+    };
+</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+<script src="index.js"></script>
     <label for="promptDropdown">Vyberte téma:</label>
     <select id="promptDropdown">
         <option value="age">age</option>
@@ -87,6 +97,7 @@
 
     <button onclick="generate()">Generuj</button>
     <button onclick="share()">Link na div</button>
+    <button class="shareFB" onclick="sdilet()">Sdilet</button>
 
 
 

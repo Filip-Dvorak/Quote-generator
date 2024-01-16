@@ -70,3 +70,37 @@ async function share() {
     }
 
 }
+function dataURItoBlob(dataURI) {
+    var byteString = atob(dataURI.split(',')[1]);
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], {type: 'image/png'});
+}
+async function sdilet() {
+    console.log("kliknuto")
+    var div = document.getElementById("card");
+    var canvas = await html2canvas(div, { scrollX: 0, scrollY: 0, allowTaint: true, useCORS: true });
+    var data = encodeURIComponent(canvas.toDataURL("image/png"));
+    try {
+        blob = dataURItoBlob(data);
+    } catch (e) {
+        console.log(e);
+    }
+    FB.getLoginStatus(function (response) {
+        console.log(response);
+        if (response.status === "connected") {
+            postImageToFacebook(response.authResponse.accessToken, "Canvas to Facebook/Twitter", "image/png", blob, window.location.href);
+        } else if (response.status === "not_authorized") {
+            FB.login(function (response) {
+                postImageToFacebook(response.authResponse.accessToken, "Canvas to Facebook/Twitter", "image/png", blob, window.location.href);
+            }, {scope: "publish_actions"});
+        } else {
+            FB.login(function (response) {
+                postImageToFacebook(response.authResponse.accessToken, "Canvas to Facebook/Twitter", "image/png", blob, window.location.href);
+            }, {scope: "publish_actions"});
+        }
+    });
+}
