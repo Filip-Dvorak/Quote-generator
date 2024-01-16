@@ -4,8 +4,9 @@
 .card{
     width: 650px;
     height: 410px;
-    background-size:contain;
+    background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     display: flex;
     text-align: center;
     flex-direction: column;
@@ -19,7 +20,8 @@
 }
 #citat{
     margin: 0px;
+    padding-inline: 25px;
 }
 #author{
-    padding-bottom: 40px;
+    /*padding-bottom: 40px;*/
 }

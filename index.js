@@ -61,6 +61,7 @@ async function share() {
         var canvas = await html2canvas(div, { scrollX: 0, scrollY: 0, allowTaint: true, useCORS: true });
         var image = encodeURIComponent(canvas.toDataURL("image/png"));
         console.log(image);
+        console.log(canvas.toDataURL("image/png"));
 
         var shareUrl = 'https://www.facebook.com/sharer/sharer.php?picture=' + image + '&quote=' + encodeURIComponent(title);
         window.open(shareUrl, '_blank');
