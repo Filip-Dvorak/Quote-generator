@@ -102,7 +102,7 @@ async function sdilet() {
         console.log(response);
         if (response.status === "connected") {
             postImageToFacebook(response.authResponse.accessToken, "Canvas to Facebook/Twitter", "image/png", blob, window.location.href);
-        } else if (response.status === "not_authorized") {
+        } else if (response.status === "unknown") {
             FB.login(function (response) {
                 postImageToFacebook(response.authResponse.accessToken, "Canvas to Facebook/Twitter", "image/png", blob, window.location.href);
             }, {scope: "publish_actions"});
