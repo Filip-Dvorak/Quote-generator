@@ -68,9 +68,10 @@ async function share() {
         var canvas = await html2canvas(div, { scrollX: 0, scrollY: 0, allowTaint: true, useCORS: true });
         var image = encodeURIComponent(canvas.toDataURL("image/png"));
         console.log(image);
-        console.log(canvas.toDataURL("image/png"));
+        var link = canvas.toDataURL("image/png");
+        console.log(link);
 
-        var shareUrl = 'https://www.facebook.com/sharer.php?picture=' + image + '&quote=' + encodeURIComponent(title);
+        var shareUrl = 'https://www.facebook.com/sharer.php?picture=' + link + '&title=' + encodeURIComponent(title);
         window.open(shareUrl, '_blank');
     } catch (error) {
         console.error("Error capturing image:", error);
