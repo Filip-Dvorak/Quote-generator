@@ -2,6 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta property="og:url"           content="https://filip-dvorak.github.io" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Epickej tiulek" />
+    <meta property="og:description"   content="Your description" />
+    <meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
     <title>Title</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -19,6 +24,15 @@
     };
 </script>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <script src="index.js"></script>
 
     <label for="promptDropdown">Vyberte téma:</label>
@@ -106,6 +120,11 @@
 <div id="card" class="card">
     <p id="citat"></p>
     <p id="author"></p>
+</div>
+
+<div class="fb-share-button"
+     data-href="https://filip-dvorak.github.io"
+     data-layout="button_count">
 </div>
 
 </body>

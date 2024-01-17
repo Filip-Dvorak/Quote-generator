@@ -56,13 +56,6 @@ function changeSize(){
 async function share() {
     var div = document.getElementById("card");
     var title = "quote";
-    FB.getLoginStatus(function (response) {
-        if (response.status === 'connected') {
-            console.log('Logged in');
-        } else if (response.status === 'null') {
-            console.log('Not logged in');
-        }
-    })
 
     try {
         var canvas = await html2canvas(div, { scrollX: 0, scrollY: 0, allowTaint: true, useCORS: true });
