@@ -70,7 +70,7 @@ async function share() {
         console.log(image);
         console.log(canvas.toDataURL("image/png"));
 
-        var shareUrl = 'https://www.facebook.com/sharer/sharer.php?picture=' + image + '&quote=' + encodeURIComponent(title);
+        var shareUrl = 'https://www.facebook.com/sharer.php?picture=' + image + '&quote=' + encodeURIComponent(title);
         window.open(shareUrl, '_blank');
     } catch (error) {
         console.error("Error capturing image:", error);
