@@ -76,43 +76,22 @@ function obrazek() {
     });
 }
 
-//upload blobu na facebook
+
+function shareOnFacebook(imageData) {
+    FB.ui({
+        method: 'share',
+        href: 'https://filip-dvorak.github.io',
+        quote: 'Check out my quote!',
+        picture: imageData,
+    }, function(response){});
+}
 function share(){
-    const upload = async (response, page_token) => {
-        let canvas = document.getElementById('card');
-        let dataURL = canvas.toDataURL('image/jpeg', 1.0);
-        let blob = dataURItoBlob(dataURL);
-        let formData = new FormData();
-        formData.append('access_token', response.authResponse.accessToken);
-        formData.append('source', blob);
 
-        let responseFB = await fetch(`https://graph.facebook.com/me/photos?access_token=${page_token}`, {
-            body: formData,
-            method: 'post'
+        html2canvas(document.getElementById('card')).then(function(canvas) {
+            var imageData = canvas.toDataURL('image/png');
+            shareOnFacebook(imageData);
         });
-        responseFB = await responseFB.json();
-        console.log(responseFB);
-    };
 
-    FB.login((response) => {
-        // TODO: Check if the user is logged in and authorized to publish_pages
-        if (response.status === 'connected' && response.authResponse.grantedScopes.includes('publish_pages')) {
-            // User is logged in and authorized, proceed to get Page Token for upload
-            FB.api('/me/accounts', 'GET', { fields: 'access_token' }, (accountResponse) => {
-                if (accountResponse && accountResponse.data && accountResponse.data.length > 0) {
-                    // Assuming the first page in the response, you may want to implement your logic here
-                    const pageToken = accountResponse.data[0].access_token;
 
-                    // Call the upload function with the obtained page token
-                    upload(response, pageToken);
-                } else {
-                    // Handle the case where no pages are found
-                    console.error('No pages found for the user.');
-                }
-            });
-        } else {
-            // Handle the case where the user is not logged in or not authorized
-            console.error('User is not logged in or not authorized to publish_pages.');
-        }
-    }, { scope: 'manage_pages,publish_pages' });
+
 }
