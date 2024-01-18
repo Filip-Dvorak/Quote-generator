@@ -53,24 +53,7 @@ function changeSize(){
     document.getElementById("author").style.fontSize = textSize + "px";
 }
 
-async function share() {
-    var div = document.getElementById("card");
-    var title = "quote";
 
-    try {
-        var canvas = await html2canvas(div, { scrollX: 0, scrollY: 0, allowTaint: true, useCORS: true });
-        var image = encodeURIComponent(canvas.toDataURL("image/png"));
-        console.log(image);
-        var link = canvas.toDataURL("image/png");
-        console.log(link);
-
-        var shareUrl = 'https://www.facebook.com/sharer.php?picture=' + link + '&title=' + encodeURIComponent(title);
-        window.open(shareUrl, '_blank');
-    } catch (error) {
-        console.error("Error capturing image:", error);
-    }
-
-}
 function dataURItoBlob(dataURI) {
     var byteString = atob(dataURI.split(',')[1]);
     var ab = new ArrayBuffer(byteString.length);
@@ -80,87 +63,56 @@ function dataURItoBlob(dataURI) {
     }
     return new Blob([ab], {type: 'image/png'});
 }
-async function sdilet() {
-    console.log("kliknuto")
-    var div = document.getElementById("card");
-    var canvas = await html2canvas(div, { scrollX: 0, scrollY: 0, allowTaint: true, useCORS: true });
-    var data = encodeURIComponent(canvas.toDataURL("image/png"));
-    let blob;
-    try {
-        blob = dataURItoBlob(data);
-    } catch (e) {
-        console.log(e);
-    }
-    FB.getLoginStatus(function (response) {
-        console.log(response);
-        if (response.status === "connected") {
-            postImageToFacebook(response.authResponse.accessToken, "Canvas to Facebook/Twitter", "image/png", blob, window.location.href);
-        } else if (response.status === "unknown") {
-            FB.login(function (response) {
-                postImageToFacebook(response.authResponse.accessToken, "Canvas to Facebook/Twitter", "image/png", blob, window.location.href);
-            }, {scope: "publish_actions"});
-        } else {
-            FB.login(function (response) {
-                postImageToFacebook(response.authResponse.accessToken, "Canvas to Facebook/Twitter", "image/png", blob, window.location.href);
-            }, {scope: "publish_actions"});
-        }
+
+function obrazek() {
+    console.log("kliknuto");
+    html2canvas(document.querySelector("#card"), {
+        allowTaint: true,
+        useCORS: true
+    }).then(canvas => {
+        canvas.toBlob(function (blob) {
+            window.saveAs(blob, 'citat.jpg');
+        });
     });
 }
 
-function postImageToFacebook(token, filename, mimeType, imageData, message) {
-    var fd = new FormData();
-    fd.append("access_token", token);
-    fd.append("source", imageData);
-    fd.append("no_story", true);
+//upload blobu na facebook
+function share(){
+    const upload = async (response, page_token) => {
+        let canvas = document.getElementById('card');
+        let dataURL = canvas.toDataURL('image/jpeg', 1.0);
+        let blob = dataURItoBlob(dataURL);
+        let formData = new FormData();
+        formData.append('access_token', response.authResponse.accessToken);
+        formData.append('source', blob);
 
-    // Upload image to facebook without story(post to feed)
-    $.ajax({
-        url: "https://graph.facebook.com/me/photos?access_token=" + token,
-        type: "POST",
-        data: fd,
-        processData: false,
-        contentType: false,
-        cache: false,
-        success: function (data) {
-            console.log("success: ", data);
+        let responseFB = await fetch(`https://graph.facebook.com/me/photos?access_token=${page_token}`, {
+            body: formData,
+            method: 'post'
+        });
+        responseFB = await responseFB.json();
+        console.log(responseFB);
+    };
 
-            // Get image source url
-            FB.api(
-                "/" + data.id + "?fields=images",
-                function (response) {
-                    if (response && !response.error) {
-                        //console.log(response.images[0].source);
+    FB.login((response) => {
+        // TODO: Check if the user is logged in and authorized to publish_pages
+        if (response.status === 'connected' && response.authResponse.grantedScopes.includes('publish_pages')) {
+            // User is logged in and authorized, proceed to get Page Token for upload
+            FB.api('/me/accounts', 'GET', { fields: 'access_token' }, (accountResponse) => {
+                if (accountResponse && accountResponse.data && accountResponse.data.length > 0) {
+                    // Assuming the first page in the response, you may want to implement your logic here
+                    const pageToken = accountResponse.data[0].access_token;
 
-                        // Create facebook post using image
-                        FB.api(
-                            "/me/feed",
-                            "POST",
-                            {
-                                "message": "",
-                                "picture": response.images[0].source,
-                                "link": window.location.href,
-                                "name": 'Look at the cute panda!',
-                                "description": message,
-                                "privacy": {
-                                    value: 'SELF'
-                                }
-                            },
-                            function (response) {
-                                if (response && !response.error) {
-                                    /* handle the result */
-                                    console.log("Posted story to facebook");
-                                    console.log(response);
-                                }
-                            }
-                        );
-                    }
-                });
-        },
-        error: function (shr, status, data) {
-            console.log("error " + data + " Status " + shr.status);
-        },
-        complete: function (data) {
-            //console.log('Post to facebook Complete');
+                    // Call the upload function with the obtained page token
+                    upload(response, pageToken);
+                } else {
+                    // Handle the case where no pages are found
+                    console.error('No pages found for the user.');
+                }
+            });
+        } else {
+            // Handle the case where the user is not logged in or not authorized
+            console.error('User is not logged in or not authorized to publish_pages.');
         }
-    });
+    }, { scope: 'manage_pages,publish_pages' });
 }

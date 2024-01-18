@@ -9,7 +9,8 @@
     <meta property="og:title"         content="Your Website Title" />
     <meta property="og:description"   content="Your description" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="html2canvas.js"></script>
+    <script src="html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
 </head>
 <body>
 <script>
@@ -102,8 +103,8 @@
     <input type="range" id="sizePicker" min="10" max="40" value="30" oninput="changeSize()">
 
     <button onclick="generate()">Generuj</button>
-    <button onclick="share()">Link na div</button>
-    <button class="shareFB" onclick="sdilet()">Sdilet</button>
+    <button id="buttonObrazek" onclick="obrazek()">stahnout obarzk</button>
+    <button onclick="share()">facebook</button>
 
 
 

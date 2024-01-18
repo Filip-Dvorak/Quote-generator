@@ -4,7 +4,7 @@
 .card{
     width: 650px;
     height: 410px;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     display: flex;
