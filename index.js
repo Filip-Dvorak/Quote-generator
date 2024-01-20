@@ -96,11 +96,9 @@ function htmlToImg(){
             console.error('oops, something went wrong!', error);
         });
 }
-
 function facebookShared() {
     var url = "//www.facebook.com/sharer/sharer.php?u=" + encodeURI("filip-dvorak.github.io");
     var windowProperties = "toolbar=0,status=0,width=" + 500 + ",height=" + 500;
 
     window.open(url, "sharer", windowProperties);
-
 }
