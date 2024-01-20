@@ -54,15 +54,6 @@ function changeSize(){
 }
 
 
-function dataURItoBlob(dataURI) {
-    var byteString = atob(dataURI.split(',')[1]);
-    var ab = new ArrayBuffer(byteString.length);
-    var ia = new Uint8Array(ab);
-    for (var i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
-    }
-    return new Blob([ab], {type: 'image/png'});
-}
 
 function obrazek() {
     console.log("kliknuto");
@@ -99,8 +90,18 @@ function htmlToImg(){
         .then(function (dataUrl) {
             document.getElementById("showImg").src = dataUrl;
             console.log(dataUrl);
+            return dataUrl;
         })
         .catch(function (error) {
             console.error('oops, something went wrong!', error);
         });
+}
+
+function facebookShared() {
+    var url = "//www.facebook.com/sharer/sharer.php?u=" + encodeURI("filip-dvorak.github.io");
+    var windowProperties = "toolbar=0,status=0,width=" + 500 + ",height=" + 500;
+
+    window.open(url, "sharer", windowProperties);
+
+
 }
