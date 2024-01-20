@@ -2,6 +2,7 @@
   "name": "untitled",
   "version": "1.0.0",
   "dependencies": {
+    "@octokit/rest": "^20.0.2",
     "pexels": "^1.4.0"
   }
 }

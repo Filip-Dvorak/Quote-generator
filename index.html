@@ -99,15 +99,31 @@
                 <option value="movies">movies</option>
                 <option value="success">success</option>
             </select>
-
+        <div class = "generateButton">
+            <button onclick="generate()">Generuj</button>
+        </div>
         <label for="colorPicker">Barva textu</label>
         <input type="color" id="colorPicker" value="#e3d662" oninput="changeColor()">
 
         <label for="sizePicker">Velikost textu</label>
         <input type="range" id="sizePicker" min="10" max="40" value="30" oninput="changeSize()">
+        <label for="colorSchemePicker" >Barevný motiv</label>
+        <select id="colorSchemePicker" style="color:red" onclick="colorCorrect()" onchange="reGenerateImage()">
+            <option value="red" style="color: red;">Červená</option>
+            <option value="orange" style="color: orange;">Oranžová</option>
+            <option value="yellow" style="color: yellow;">Žlutá</option>
+            <option value="green" style="color: green;">Zelená</option>
+            <option value="turquoise" style="color: turquoise;">Tyrkysová</option>
+            <option value="blue" style="color: blue;">Modrá</option>
+            <option value="violet" style="color: violet;">Fialová</option>
+            <option value="pink" style="color: pink;">Růžová</option>
+            <option value="brown" style="color: brown;">Hnědá</option>
+            <option value="black" style="color: black;">Černá</option>
+            <option value="gray" style="color: #808080;">Šedivá</option>
+            <option value="white" style="color: white;">Bílá</option>
+        </select>
 
         <div class="buttons">
-            <button onclick="generate()">Generuj</button>
             <button id="buttonObrazek" onclick="obrazek()">stahnout obarzk</button>
             <button onclick="facebookShared()">facebook</button>
             <button onclick="htmlToImg()">hmtlTImage</button>
@@ -116,8 +132,10 @@
     </div>
 
     <div class="card" id="card">
-        <p id="citat"></p>
-        <p id="author"></p>
+        <div class="textLayer">
+            <p id="citat"></p>
+            <p id="author"></p>
+        </div>
     </div>
 </div>
 <img src="" id="showImg" alt="obrazek">
