@@ -184,7 +184,6 @@ function parseUrlParameters(url) {
             params[key] = value;
         }
     }
-
     return params;
 }
 
