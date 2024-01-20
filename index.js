@@ -103,5 +103,40 @@ function facebookShared() {
     window.open(url, "sharer", windowProperties);
 }
 
+function saveImgToDirecotry(){
+    const fs = require('fs');
+    const { Octokit } = require('@octokit/rest');
 
+// Set your GitHub credentials and repository details
+    const octokit = new Octokit({
+        auth: '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', // Replace with your GitHub personal access token
+        userAgent: 'SaveBlobImageScript',
+    });
+
+    const owner = 'Filip-Dvorak';
+    const repo = 'Filip-Dvorak.github.io';
+    const branch = 'main'; // Replace with your branch name
+    const directoryPath = 'path/to/your/directory';
+    const fileName = 'image.jpg'; // Replace with your blob image file name
+
+// Read the blob image file as a buffer
+    const blobImage = fs.readFileSync('path/to/your/blob-image.jpg');
+
+// Create or update the file in the repository
+    octokit.repos.createOrUpdateFileContents({
+        owner,
+        repo,
+        path: `${directoryPath}/${fileName}`,
+        branch,
+        message: 'Add blob image to directory',
+        content: blobImage.toString('base64'),
+    })
+        .then(response => {
+            console.log('Blob image added successfully:', response.data.commit);
+        })
+        .catch(error => {
+            console.error('Error adding blob image:', error.message);
+        });
+
+}
 
