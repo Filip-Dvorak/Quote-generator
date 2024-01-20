@@ -11,6 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
 </head>
 <body>
 <script>
@@ -109,6 +110,7 @@
             <button onclick="generate()">Generuj</button>
             <button id="buttonObrazek" onclick="obrazek()">stahnout obarzk</button>
             <button onclick="share()">facebook</button>
+            <button onclick="htmlToImg()">hmtlTImage</button>
         </div>
     </div>
 
@@ -117,5 +119,6 @@
         <p id="author"></p>
     </div>
 </div>
+<img src="" id="showImg" alt="obrazek">
 </body>
 </html>

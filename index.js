@@ -91,7 +91,16 @@ function share(){
             var imageData = canvas.toDataURL('image/png');
             shareOnFacebook(imageData);
         });
+}
 
-
-
+function htmlToImg(){
+    let node = document.getElementById("card");
+    domtoimage.toPng(node)
+        .then(function (dataUrl) {
+            document.getElementById("showImg").src = dataUrl;
+            console.log(dataUrl);
+        })
+        .catch(function (error) {
+            console.error('oops, something went wrong!', error);
+        });
 }
