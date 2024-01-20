@@ -1,3 +1,4 @@
+let imageSource;
 function generate() {
     const photoApiKey = 'QuD0hiQZNs0X9udPoRDInjSeoUehIBbmSpo0DQ2FxyYh0yC3XJ2CkAHx';
     var dropdown = document.getElementById("promptDropdown");
@@ -14,7 +15,7 @@ function generate() {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            let imageSource = data.photos[Math.floor(Math.random() * imagePool)].src.landscape;
+            imageSource = data.photos[Math.floor(Math.random() * imagePool)].src.landscape;
             console.log(imageSource)
             document.getElementById("card").style.backgroundImage= "url(" + imageSource + ")";
         })
@@ -154,11 +155,60 @@ function htmlToImg(){
         });
 }
 function facebookShared() {
-    var url = "//www.facebook.com/sharer/sharer.php?u=" + encodeURI("filip-dvorak.github.io") ;
+
+    URLParams={
+        imgSrc:imageSource,
+        quote: document.getElementById("citat").innerHTML,
+        author: document.getElementById("author").innerHTML,
+        textSize: document.getElementById("sizePicker").value,
+        textColor: document.getElementById("colorPicker").value
+    }
+    console.log(URLParams)
+    var url = "//www.facebook.com/sharer/sharer.php?u=" + encodeURI("filip-dvorak.github.io") + '?' + encodeURIComponent($.param(URLParams)) ;
     var windowProperties = "toolbar=0,status=0,width=" + 500 + ",height=" + 500;
 
     window.open(url, "sharer", windowProperties);
 }
+function parseUrlParameters(url) {
+    var params = {};
+    var queryString = url.split('?')[1];
 
+    if (queryString) {
+        var paramPairs = queryString.split('&');
+
+        for (var i = 0; i < paramPairs.length; i++) {
+            var pair = paramPairs[i].split('=');
+            var key = decodeURIComponent(pair[0]);
+            var value = decodeURIComponent(pair[1] || '');
+
+            params[key] = value;
+        }
+    }
+
+    return params;
+}
+
+function init(){
+    var url = window.location.href;
+    var parametry = parseUrlParameters(url);
+    var card = document.getElementById("card");
+    var citat = document.getElementById("citat");
+    var author = document.getElementById("author");
+
+    if(!parametry.imgSrc===undefined) {
+        card.style.backgroundImage= "url(" + parametry.imgSrc + ")";
+    }
+    if(!parametry.quote===undefined) {
+        citat.innerHTML = parametry.quote;
+    }
+    citat.style.color = parametry.textColor;
+    citat.style.fontSize = parametry.textSize + "px";
+    if(!parametry.author===undefined) {
+        author.innerHTML = parametry.author;
+    }
+    author.style.color = parametry.textColor;
+    author.style.fontSize = parametry.textSize + "px";
+
+}
 
 
