@@ -139,21 +139,7 @@ function obrazek() {
 }
 
 
-function shareOnFacebook(imageData) {
-    FB.ui({
-        method: 'share',
-        href: 'https://filip-dvorak.github.io',
-        quote: 'Check out my quote!',
-        picture: imageData,
-    }, function(response){});
-}
-function share(){
 
-        html2canvas(document.getElementById('card')).then(function(canvas) {
-            var imageData = canvas.toDataURL('image/png');
-            shareOnFacebook(imageData);
-        });
-}
 
 function htmlToImg(){
     let node = document.getElementById("card");
@@ -174,48 +160,5 @@ function facebookShared() {
     window.open(url, "sharer", windowProperties);
 }
 
-function saveImgToDirecotry(){
-    const owner = 'Filip-Dvorak';
-    const repo = 'Filip-Dvorak.github.io';
-    const branch = 'master'; // Replace with your branch name
-    const directoryPath = 'images';
-    const fileName = 'image.jpg'; // Replace with your blob image file name
-    const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${directoryPath}/`;
 
-    const divContent = document.getElementById('card').innerHTML; // Replace 'yourDivId' with the actual ID of your div
-
-// Create a canvas element and draw the content of the div onto it
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    canvas.width = 400; // Set the width of the canvas based on your content
-    canvas.height = 200; // Set the height of the canvas based on your content
-    context.fillStyle = 'white'; // Set the background color
-    context.fillRect(0, 0, canvas.width, canvas.height);
-    context.font = '16px Arial'; // Set font style
-    context.fillStyle = 'black'; // Set text color
-    context.fillText(divContent, 10, 20); // Adjust the position based on your content
-
-// Convert the canvas content to a data URL
-    const dataURL = canvas.toDataURL('image/jpeg'); // You can change 'image/jpeg' to other image formats if needed
-
-// Extract the base64-encoded image data from the data URL
-    const base64Image = dataURL.replace(/^data:image\/(png|jpeg);base64,/, '')
-
-// Make a PUT request to create or update the file in the repository
-    fetch(apiUrl, {
-        method: 'PUT',
-        headers: {
-            Authorization: 'Bearer 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', // Replace with your GitHub personal access token
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            message: 'Add blob image to directory',
-            content: base64Image,
-            branch,
-        }),
-    })
-        .then(response => response.json())
-        .then(data => console.log('Blob image added successfully:', data.commit))
-        .catch(error => console.error('Error adding blob image:', error.message));
-}
 

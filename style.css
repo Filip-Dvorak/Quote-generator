@@ -12,6 +12,9 @@ h1{
     padding-top: 30px;
     text-shadow: black 1px 1px 1px;
 }
+hr{
+    border: 2px solid rgba(124, 124, 124, 0.93);
+}
 
 .container {
     justify-content: center;
@@ -20,7 +23,6 @@ h1{
     display: flex;
     width: 50%;
     margin: auto;
-
 
 }
 
@@ -46,7 +48,8 @@ h1{
 .generateButton{
     display: flex;
     flex-direction: column;
-    padding-bottom: 60px;
+    padding-bottom: 25px;
+    padding-top: 15px;
 }
 
 .card {
@@ -121,4 +124,27 @@ h1{
 }
 #colorSchemePicker option{
     background-color: #e1e8f1;
+}
+.generateButton button{
+    align-items: center;
+    background-image: linear-gradient(144deg, #b46be8, #8b81ee 50%, #699fb2);
+    border-radius: 8px;
+    border: 1px solid #1a022a;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-family: Phantomsans, sans-serif;
+    font-size: 20px;
+    justify-content: center;
+    line-height: 1em;
+    max-width: 100%;
+    min-width: 140px;
+    padding: 19px 24px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
 }

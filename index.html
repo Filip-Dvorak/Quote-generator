@@ -102,11 +102,15 @@
         <div class = "generateButton">
             <button onclick="generate()">Generuj</button>
         </div>
+
+        <div class = "pickers">
+            <hr>
         <label for="colorPicker">Barva textu</label>
         <input type="color" id="colorPicker" value="#e3d662" oninput="changeColor()">
 
         <label for="sizePicker">Velikost textu</label>
         <input type="range" id="sizePicker" min="10" max="40" value="30" oninput="changeSize()">
+
         <label for="colorSchemePicker" >Barevný motiv</label>
         <select id="colorSchemePicker" style="color:red" onclick="colorCorrect()" onchange="reGenerateImage()">
             <option value="red" style="color: red;">Červená</option>
@@ -122,12 +126,13 @@
             <option value="gray" style="color: #808080;">Šedivá</option>
             <option value="white" style="color: white;">Bílá</option>
         </select>
+            <hr>
+        </div>
 
         <div class="buttons">
             <button id="buttonObrazek" onclick="obrazek()">stahnout obarzk</button>
             <button onclick="facebookShared()">facebook</button>
             <button onclick="htmlToImg()">hmtlTImage</button>
-            <button onclick="saveImgToDirecotry()"> save</button>
         </div>
     </div>
 
