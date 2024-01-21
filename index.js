@@ -161,7 +161,9 @@ function facebookShared() {
         quote: document.getElementById("citat").innerHTML,
         author: document.getElementById("author").innerHTML,
         textSize: document.getElementById("sizePicker").value,
-        textColor: document.getElementById("colorPicker").value
+        textColor: document.getElementById("colorPicker").value,
+        prompt: document.getElementById("promptDropdown").value,
+        colorScheme: document.getElementById("colorSchemePicker").value
     }
     console.log(URLParams)
     var url = "//www.facebook.com/sharer/sharer.php?u=" + encodeURI("filip-dvorak.github.io") + '?' + encodeURIComponent($.param(URLParams)) ;
@@ -179,9 +181,7 @@ function parseUrlParameters(url) {
         for (var i = 0; i < paramPairs.length; i++) {
             var pair = paramPairs[i].split('=');
             var key = decodeURIComponent(pair[0]);
-            var value = decodeURIComponent(pair[1] || '');
-
-            params[key] = value;
+            params[key] = decodeURIComponent(pair[1] || '');
         }
     }
     return params;
@@ -193,6 +193,10 @@ function init(){
     var card = document.getElementById("card");
     var citat = document.getElementById("citat");
     var author = document.getElementById("author");
+    var sizePicker = document.getElementById("sizePicker");
+    var colorPicker = document.getElementById("colorPicker");
+    var colorSchemePicker = document.getElementById("colorSchemePicker");
+    var promptDropdown = document.getElementById("promptDropdown");
 
     if(parametry.imgSrc!==undefined) {
         card.style.backgroundImage= "url(" + parametry.imgSrc + ")";
@@ -202,11 +206,17 @@ function init(){
     }
     citat.style.color = parametry.textColor;
     citat.style.fontSize = parametry.textSize + "px";
+
     if(parametry.author!==undefined) {
         author.innerHTML = parametry.author;
     }
     author.style.color = parametry.textColor;
     author.style.fontSize = parametry.textSize + "px";
+
+    sizePicker.value = parametry.textSize;
+    colorPicker.value = parametry.textColor;
+    colorSchemePicker.value = parametry.colorScheme;
+    promptDropdown.value = parametry.prompt;
 
 }
 
