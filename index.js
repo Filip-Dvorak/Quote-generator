@@ -139,21 +139,6 @@ function obrazek() {
     });
 }
 
-
-
-
-function htmlToImg(){
-    let node = document.getElementById("card");
-    domtoimage.toPng(node)
-        .then(function (dataUrl) {
-            document.getElementById("showImg").src = dataUrl;
-            console.log(dataUrl);
-            return dataUrl;
-        })
-        .catch(function (error) {
-            console.error('oops, something went wrong!', error);
-        });
-}
 function facebookShared() {
 
     URLParams={
