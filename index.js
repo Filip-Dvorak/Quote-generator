@@ -198,11 +198,18 @@ function init(){
     author.style.color = parametry.textColor;
     author.style.fontSize = parametry.textSize + "px";
 
-    sizePicker.value = parametry.textSize;
-    colorPicker.value = parametry.textColor;
-    colorSchemePicker.value = parametry.colorScheme;
-    promptDropdown.value = parametry.prompt;
-
+    if(parametry.textSize!==undefined) {
+        sizePicker.value = parametry.textSize;
+    }
+    if(parametry.textColor!==undefined) {
+        colorPicker.value = parametry.textColor;
+    }
+    if(parametry.colorScheme!==undefined) {
+        colorSchemePicker.value = parametry.colorScheme;
+    }
+    if(parametry.prompt!==undefined) {
+        promptDropdown.value = parametry.prompt;
+    }
 }
 
 
