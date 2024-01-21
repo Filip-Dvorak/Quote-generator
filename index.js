@@ -197,12 +197,10 @@ function init(){
     if(parametry.imgSrc!==undefined) {
         card.style.backgroundImage= "url(" + parametry.imgSrc + ")";
     }
-
         citat.innerHTML = parametry.quote;
-
     citat.style.color = parametry.textColor;
     citat.style.fontSize = parametry.textSize + "px";
-    if(!parametry.author===undefined) {
+    if(parametry.author!==undefined) {
         author.innerHTML = parametry.author;
     }
     author.style.color = parametry.textColor;
