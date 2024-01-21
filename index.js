@@ -194,12 +194,12 @@ function init(){
     var citat = document.getElementById("citat");
     var author = document.getElementById("author");
 
-    if(!parametry.imgSrc===undefined) {
+    if(parametry.imgSrc!==undefined) {
         card.style.backgroundImage= "url(" + parametry.imgSrc + ")";
     }
-    if(!parametry.quote===undefined) {
+
         citat.innerHTML = parametry.quote;
-    }
+
     citat.style.color = parametry.textColor;
     citat.style.fontSize = parametry.textSize + "px";
     if(!parametry.author===undefined) {
