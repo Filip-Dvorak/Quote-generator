@@ -58,7 +58,7 @@ function reGenerateImage(){
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            let imageSource = data.photos[Math.floor(Math.random() * imagePool)].src.landscape;
+            imageSource = data.photos[Math.floor(Math.random() * imagePool)].src.landscape;
             console.log(imageSource)
             document.getElementById("card").style.backgroundImage= "url(" + imageSource + ")";
         })
