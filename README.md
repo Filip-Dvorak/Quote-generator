@@ -1,1 +1,8 @@
-Dostupné na https://eso.vse.cz/~dvof01/
+# Webová aplikace - generátor grafických citátů
+
+ - Generování citátů i s obrázkem z vybraného promptu 
+ - Úprava  vygenerovaného citátu 
+ - Použití API pro citáty a prompt to image
+
+ 
+
