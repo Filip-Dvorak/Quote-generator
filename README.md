@@ -1,1 +1,1 @@
-Dostupné na https://filip-dvorak.github.io/ a https://eso.vse.cz/~dvof01/
+Dostupné na https://eso.vse.cz/~dvof01/
